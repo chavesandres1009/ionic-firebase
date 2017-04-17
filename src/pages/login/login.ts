@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { RegisterPage } from '../register/register';
 import { AuthProviders, AuthMethods, AngularFire } from 'angularfire2';
 
 @Component({
@@ -8,6 +9,7 @@ import { AuthProviders, AuthMethods, AngularFire } from 'angularfire2';
 })
 export class LoginPage {
 
+  registerRoot = RegisterPage;
   email: string;
   password: string;
 
@@ -37,5 +39,9 @@ export class LoginPage {
     }).catch((error) => {
       console.log(error);
     });
+  }
+
+  toRegisterPage() {
+    this.navCtrl.push(RegisterPage);
   }
 }
