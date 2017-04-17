@@ -7,6 +7,8 @@ import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
+import { LoginPage } from '../pages/login/login';
+import { RegisterPage} from '../pages/register/register';
 
 import { AngularFireModule } from 'angularfire2';
 
@@ -28,7 +30,9 @@ export const fireBaseConfig =  {
     AboutPage,
     ContactPage,
     HomePage,
-    TabsPage
+    TabsPage,
+    LoginPage,
+    RegisterPage
   ],
   imports: [
     BrowserModule,
@@ -41,7 +45,9 @@ export const fireBaseConfig =  {
     AboutPage,
     ContactPage,
     HomePage,
-    TabsPage
+    TabsPage,
+    LoginPage,
+    RegisterPage,
   ],
   providers: [
     StatusBar,
