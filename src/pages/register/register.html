@@ -7,5 +7,17 @@
 </ion-header>
 
 <ion-content padding>
-    <h1>Register page</h1>
+  <ion-list inset>
+
+    <ion-item>
+      <ion-label>Email</ion-label>
+      <ion-input type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Password</ion-label>
+      <ion-input type="password"></ion-input>
+    </ion-item>
+</ion-list>
+<button ion-button color="secondary" block full (click)="toRegisterPage()" >Register</button>
 </ion-content>
