@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, AlertController } from 'ionic-angular';
+import { UserService } from '../../providers/user-service';
+import { TabsPage } from '../tabs/tabs';
 
 @Component({
   selector: 'page-register',
-  templateUrl: 'register.html'
+  templateUrl: 'register.html',
+  providers: [ UserService ]
 })
 export class RegisterPage {
 
@@ -11,11 +14,24 @@ export class RegisterPage {
   password: string;
   github: string; 
 
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController, public alertCtrl: AlertController, private userService: UserService) {
 
   }
 
   register(){
-
+    this.userService.singUpUser(this.email, this.password).then(
+      auhtData => {
+        console.log("Se registro bien");
+        this.navCtrl.push(TabsPage);
+      },
+      error => {
+        let alert = this.alertCtrl.create({
+          title: 'Error',
+          subTitle: error.message,
+          buttons: ['Ok'],
+        });
+        alert.present();
+      }
+    );
   }
 }

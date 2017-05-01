@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
-
+import * as firebase from 'firebase';
 /*
   Generated class for the UserService provider.
 
@@ -11,8 +11,28 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class UserService {
 
-  constructor(public http: Http) {
+  public fireAuth: any;
+  public userProfile: any;
+
+  constructor(private http: Http) {
     console.log('Hello UserService Provider');
+    this.fireAuth = firebase.auth();
+    //this.userProfile = firebase.database.ref('users');
   }
 
+  singUpUser(email:string, password:string) {
+    return this.fireAuth.createUserWithEmailAndPassword(email, password)
+      .then((newUser) => {
+        this.fireAuth.signInWithEmailAndPassword(email, password)
+        .then((authenticatedUser) => {
+          /*this.userProfile.child(authenticatedUser.uid).set({
+            email: email
+          });*/
+        })
+      });
+  }
+
+  logoutUser() {
+    return this.fireAuth.singOut();
+  }
 }

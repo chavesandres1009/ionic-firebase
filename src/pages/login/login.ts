@@ -2,10 +2,12 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { RegisterPage } from '../register/register';
 import { AuthProviders, AuthMethods, AngularFire } from 'angularfire2';
+import { UserService } from '../../providers/user-service'
 
 @Component({
   selector: 'page-login',
-  templateUrl: 'login.html'
+  templateUrl: 'login.html',
+  providers: [UserService]
 })
 export class LoginPage {
 
@@ -13,12 +15,17 @@ export class LoginPage {
   email: string;
   password: string;
 
-  constructor(public navCtrl: NavController, public navParamas: NavParams, public angfire: AngularFire) {
+  constructor(public navCtrl: NavController, public navParamas: NavParams, public angfire: AngularFire,
+  private userService: UserService) {
 
   }
 
   ionViewDidLoad(){
     console.log('No se para que sirve este metodo');
+  }
+
+  signUserUp() {
+    //this.userService.singUpUser();
   }
 
   login() {

@@ -11,13 +11,13 @@
 
     <ion-item>
       <ion-label>Email</ion-label>
-      <ion-input type="text"></ion-input>
+      <ion-input type="text" [(ngModel)]="email"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label>Password</ion-label>
-      <ion-input type="password"></ion-input>
+      <ion-input type="password" [(ngModel)]="password"></ion-input>
     </ion-item>
 </ion-list>
-<button ion-button color="secondary" block full (click)="toRegisterPage()" >Register</button>
+<button ion-button color="secondary" block full (click)="register()" >Register</button>
 </ion-content>
