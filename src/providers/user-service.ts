@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import * as firebase from 'firebase';
+import { AuthProviders, AuthMethods, AngularFire} from 'angularfire2';
 /*
   Generated class for the UserService provider.
 
@@ -14,7 +15,7 @@ export class UserService {
   public fireAuth: any;
   public userProfile: any;
 
-  constructor(private http: Http) {
+  constructor(private http: Http, private angFire: AngularFire) {
     console.log('Hello UserService Provider');
     this.fireAuth = firebase.auth();
     //this.userProfile = firebase.database.ref('users');
@@ -34,5 +35,19 @@ export class UserService {
 
   logoutUser() {
     return this.fireAuth.singOut();
+  }
+
+  login(email: string, password:string) {
+    return this.angFire.auth.login({
+      email: email,
+      password: password
+    }, {
+      provider: AuthProviders.Password,
+      method: AuthMethods.Password
+    });
+  }
+
+  logOut() {
+    return this.angFire.auth.logout() ; 
   }
 }

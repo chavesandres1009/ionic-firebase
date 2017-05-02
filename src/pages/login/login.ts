@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { RegisterPage } from '../register/register';
 import { AuthProviders, AuthMethods, AngularFire } from 'angularfire2';
 import { UserService } from '../../providers/user-service'
@@ -15,7 +15,7 @@ export class LoginPage {
   email: string;
   password: string;
 
-  constructor(public navCtrl: NavController, public navParamas: NavParams, public angfire: AngularFire,
+  constructor(public navCtrl: NavController, public navParamas: NavParams, public alertCtrl: AlertController, public angfire: AngularFire,
   private userService: UserService) {
 
   }
@@ -29,7 +29,20 @@ export class LoginPage {
   }
 
   login() {
-    this.angfire.auth.login({
+    this.userService.login(this.email, this.password).then(
+      (authUser) => {
+        console.log('succes login');
+      },
+      (error) => {
+          let alert = this.alertCtrl.create({
+          title: 'Error',
+          subTitle: error.message,
+          buttons: ['Ok'],
+        });
+        alert.present();
+      }
+    );
+    /*this.angfire.auth.login({
       email: this.email,
       password: this.password,
     }, {
@@ -45,7 +58,7 @@ export class LoginPage {
       this.navCtrl.pop();
     }).catch((error) => {
       console.log(error);
-    });
+    });*/
   }
 
   toRegisterPage() {
