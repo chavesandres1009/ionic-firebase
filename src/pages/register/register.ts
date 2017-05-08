@@ -12,6 +12,7 @@ export class RegisterPage {
 
   email: string;
   password: string;
+  name: string;
   github: string; 
 
   constructor(public navCtrl: NavController, public alertCtrl: AlertController, private userService: UserService) {
@@ -19,7 +20,7 @@ export class RegisterPage {
   }
 
   register(){
-    this.userService.singUpUser(this.email, this.password).then(
+    this.userService.singUpUser(this.email, this.password, this.name, this.github).then(
       auhtData => {
         console.log("Se registro bien");
         this.navCtrl.push(TabsPage);

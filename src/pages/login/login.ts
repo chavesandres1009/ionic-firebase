@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { RegisterPage } from '../register/register';
 import { AuthProviders, AuthMethods, AngularFire } from 'angularfire2';
-import { UserService } from '../../providers/user-service'
+import { UserService } from '../../providers/user-service';
+import { TabsPage } from '../tabs/tabs';
 
 @Component({
   selector: 'page-login',
@@ -32,6 +33,7 @@ export class LoginPage {
     this.userService.login(this.email, this.password).then(
       (authUser) => {
         console.log('succes login');
+        this.navCtrl.push(TabsPage);
       },
       (error) => {
           let alert = this.alertCtrl.create({
