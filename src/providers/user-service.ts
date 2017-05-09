@@ -26,14 +26,11 @@ export class UserService {
   singUpUser(email:string, password:string, name: string, github: string) {
     return this.fireAuth.createUserWithEmailAndPassword(email, password)
       .then((newUser) => {
-        //this.newUser(, name, github);
         this.saveNewUser(newUser.uid, name, github);
         this.fireAuth.signInWithEmailAndPassword(email, password)
         
         .then((authenticatedUser) => {
-          /*this.userProfile.child(authenticatedUser.uid).set({
-            email: email
-          });*/
+
         })
       });
   }
@@ -56,6 +53,10 @@ export class UserService {
         }
       }
     );
+  }
+
+  public getCurrentUser() {
+    return firebase.auth().currentUser;
   }
 
   logoutUser() {
@@ -89,12 +90,4 @@ export class UserService {
       return null;
     }
   }
-
-  /*private userInfo(name: string, age:number, github: string,) {
-    return {
-      name: name,
-      age: age,
-      github: github
-    };
-  }*/
 }

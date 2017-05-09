@@ -12,6 +12,7 @@ import { LoginPage } from '../pages/login/login';
 import { RegisterPage} from '../pages/register/register';
 import { UserDetails } from '../pages/user-details/user-details';
 import { MessagesPage } from '../pages/messages/messages';
+import { GithubPage } from '../pages/github-page/github-page';
 
 import { AngularFireModule } from 'angularfire2';
 
@@ -37,7 +38,8 @@ export const fireBaseConfig =  {
     LoginPage,
     RegisterPage,
     UserDetails,
-    MessagesPage
+    MessagesPage,
+    GithubPage
   ],
   imports: [
     BrowserModule,
@@ -55,7 +57,8 @@ export const fireBaseConfig =  {
     LoginPage,
     RegisterPage,
     UserDetails,
-    MessagesPage
+    MessagesPage,
+    GithubPage
   ],
   providers: [
     StatusBar,
