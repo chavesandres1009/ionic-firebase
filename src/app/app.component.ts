@@ -25,8 +25,8 @@ export class MyApp {
    };
 
   firebase.initializeApp(fireBaseConfig);
-
   firebase.auth().onAuthStateChanged((user) => {
+    console.log("hello");
     if(user) {
       console.log('is login');
     } else {

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, AlertController } from 'ionic-angular';
+import { NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 import { RegisterPage } from '../register/register';
 import { AuthProviders, AuthMethods, AngularFire } from 'angularfire2';
 import { UserService } from '../../providers/user-service';
@@ -16,8 +16,9 @@ export class LoginPage {
   email: string;
   password: string;
 
-  constructor(public navCtrl: NavController, public navParamas: NavParams, public alertCtrl: AlertController, public angfire: AngularFire,
-  private userService: UserService) {
+  constructor(public navCtrl: NavController, public navParamas: NavParams, 
+  public alertCtrl: AlertController, public angfire: AngularFire,
+  public loadCtrl: LoadingController, private userService: UserService) {
 
   }
 
@@ -30,10 +31,16 @@ export class LoginPage {
   }
 
   login() {
+    let loading = this.loadCtrl.create({
+      content: 'Please wait'
+    });
+    loading.present();
+
     this.userService.login(this.email, this.password).then(
       (authUser) => {
         console.log('succes login');
-        this.navCtrl.push(TabsPage);
+        loading.dismiss();
+        this.navCtrl.setRoot(TabsPage);
       },
       (error) => {
           let alert = this.alertCtrl.create({
@@ -41,6 +48,7 @@ export class LoginPage {
           subTitle: error.message,
           buttons: ['Ok'],
         });
+        loading.dismiss();
         alert.present();
       }
     );

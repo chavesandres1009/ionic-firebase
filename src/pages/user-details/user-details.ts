@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { UserService } from '../../providers/user-service';
+import { LoginPage } from '../login/login';
 
 /**
  * Generated class for the UserDetails page.
@@ -24,6 +25,7 @@ export class UserDetails {
 
   logOut() {
     this.userService.logOut();
+    this.navCtrl.setRoot(LoginPage);
   }
 
 }
